@@ -1,0 +1,11 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
+;
+[subrepo]
+	remote = git@github.com:ahmed-masud/yo-express-polymer-app.git
+	branch = master
+	commit = 08cba801c4c2916991da196902e0027206a021f9
+	parent = cffdbb250296f7b7d4a8b57465a3b2d98893907c
+	cmdver = 0.2.1
