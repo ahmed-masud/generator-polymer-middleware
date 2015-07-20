@@ -6,3 +6,5 @@ Submodule for yo-express-polymer with support for Polymer 1.0
 
 This sub-module adds support for express+polymer-1.0 interweaving for the yeoman 
 polymer-express generator found at https://github.com/ahmed-masud/generator-polymer-express
+
+More changes 
