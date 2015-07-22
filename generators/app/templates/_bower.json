@@ -1,6 +1,13 @@
 {
-  "name": "package",
-  "version": "0.0.0",
-  "dependencies": {}
-}
+  "name": "<%= appname %>",
+  "version": "<%= version %>",
+  "title": "<%= title %>",
+  "license": "<%= license %>",
+  "dependencies": {
+    "polymer": "Polymer/polymer#^1.0.0",
+    "iron-elements": "PolymerElements/iron-elements#^1.0.0",
+    "paper-elements": "PolymerElements/paper-elements#^1.0.0",
+    "neon-elements": "PolymerElements/neon-elements#^1.0.0"
+  }
 
+}
