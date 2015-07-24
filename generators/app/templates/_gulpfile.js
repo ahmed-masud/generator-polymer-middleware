@@ -214,7 +214,7 @@ gulp.task('serve', ['routes', 'styles', 'elements', 'images', 'nodemon'], functi
     //       will present a certificate warning in the browser.
     // https: true,
     proxy: "http://localhost:<%= serverPort %>",
-    browser: "google chrome",
+    browser: "google-chrome",
     port: <%= devProxyPort %>
   });
 

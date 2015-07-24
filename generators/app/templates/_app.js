@@ -9,8 +9,13 @@ var routes = require('./routes/index');
 
 var app = express();
 
+// TODO: change this to make it into a streaming view
 // view engine setup
+
+<%= viewEngineInit %>
 app.set('views', path.join(__dirname, 'app'));
+app.set('view engine', '<%= viewEngine %>');
+
 
 // uncomment after placing your favicon in /app
 //app.use(favicon(path.join(__dirname, 'app', 'favicon.ico')));
