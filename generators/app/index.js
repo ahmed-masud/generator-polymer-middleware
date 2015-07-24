@@ -1,5 +1,6 @@
 'use strict';
 var yeoman = require('yeoman-generator');
+var fs = require('fs');
 var path = require('path');
 var chalk = require('chalk');
 var yosay = require('yosay');
@@ -13,6 +14,10 @@ module.exports = yeoman.generators.Base.extend({
 
   constructor: function() {
       yeoman.generators.Base.apply(this, arguments);
+      this.appname = _.kebabCase(this.appname);
+      if(this.appname.indexOf('-') < 0) {
+        this.appname = this.appname + '-' + 'app';
+      }
       this.props = {
         appname: _.kebabCase(this.appname)
         , title: _.startCase(this.appname)
@@ -23,10 +28,27 @@ module.exports = yeoman.generators.Base.extend({
         , devProxyPort: 5000
         , addPassport: false
         , starterKit: 'minimal'
-        , skipInstall: true // change this to false for production generator
+        , skipInstall: !!true
         , viewEngine: 'html'
         , viewEngineInit: ''
       };
+
+      try  { 
+        fs.accessSync(this.destinationPath('package.json'));
+        this.log('I found an existing ' + chalk.cyan('package.json') + ' file, slurping it for some defaults');
+        var pj = require(this.destinationPath('package.json'));
+
+        this.props.appname = pj.name || this.props.appname;
+        this.props.title = pj.title || this.props.title;
+        this.props.version = pj.version || this.props.version;
+        this.generator = pj.generator || this.props.generator;
+        this.license = pj.license || this.props.license;
+        this.starterKit = pj.starterKit || this.props.starterKit;
+        this.viewEngine = pj.viewEngine || this.props.viewEngine; 
+      } catch(err) {
+        // do nothing here as fs.accessSync threw something
+      }
+
       this.utils = {};
       this.utils.processGlob = function(src, dest, files) {
         for(var file in files) {
@@ -122,14 +144,17 @@ module.exports = yeoman.generators.Base.extend({
     ];
 
     this.prompt(prompts, function (props) {
-      _.merge(props, this.props);
+      _.merge(this.props, props);
       // To access props later use this.props.someOption;
       this.props.viewEngineInit = "";
       switch(this.props.viewEngine) {
       case "html":
-        this.props.viewEngineInit = "app.engine('html', require('ehp').renderFile);";
+        this.props.viewEngineInit = "appServer.engine('html', require('ehp').renderFile);";
         break;
       }
+
+      this.starterKitEngine = this.props.starterKit + '-' + this.props.viewEngine;
+      this.starterKitDir = '._' + this.starterKitEngine;
 
       done();
     }.bind(this));
@@ -139,15 +164,21 @@ module.exports = yeoman.generators.Base.extend({
 
     projectfiles: function () {
       var files = {
-        'editorconfig': '.editorconfig',
-        'jshintrc': '.jshintrc',
-        'bowerrc': '.bowerrc',
-        'yo-rc.json': '.yo-rc.json',
-        'wct.conf.json': 'wct.conf.json'
+        'minimal-html': {
+          'editorconfig': '.editorconfig',
+          'jshintrc': '.jshintrc',
+          'bowerrc': '.bowerrc',
+          'yo-rc.json': '.yo-rc.json',
+          'wct.conf.json': 'wct.conf.json'
+        },
+
+        'polymer-starter-kit-html' : {
+
+        }
       };
 
-      for(var file in files) {
-        var dest = files[file];
+      for(var file in files[this.starterKitEngine]) {
+        var dest = files[this.starterKitEngine][file];
         this.log(chalk.yellow('copying ') + chalk.white.bold(file));
 
         this.fs.copy(
@@ -163,15 +194,18 @@ module.exports = yeoman.generators.Base.extend({
   writing: {
     app: function () {
       // var done = this.async();
-      var starterKit = '_' + this.props.starterKit + '-' + this.props.viewEngine;
       var files = {
          '_package.json': 'package.json'
         ,'_bower.json': 'bower.json'
         ,'_gulpfile.js': 'gulpfile.js'
         ,'bin/_www': 'bin/www'
-        ,'_app.js': 'app.js'
+        ,'_appserver.js': 'appserver.js'
         ,'routes/': 'routes/'
       };
+      var starterKit = this.starterKitDir;
+
+      files[path.join(starterKit, 'elements/._appname/._appname.html')] = 
+        path.join('app/elements/', this.props.appname, this.props.appname + '.html');
       files[path.join(starterKit, 'scripts/._appname.js')] = 
         path.join('app/scripts', this.props.appname +'.js');
 
@@ -194,7 +228,7 @@ module.exports = yeoman.generators.Base.extend({
         ,'**/*.jpg' : 'app'        
       };
 
-      var kits = ['_common', starterKit ];
+      var kits = ['._common', starterKit ];
       for (var index in kits ) {
         var kit = kits[index];
         for (var pattern in patterns) {
@@ -220,7 +254,7 @@ module.exports = yeoman.generators.Base.extend({
           this.npmInstall(this.npmPackages, { save: true });
         }
         if (!this.props.skipInstall) {
-          this.installDependencies({ skipInstall: this.props.skipInstall });
+          this.installDependencies();
         }
         else {
           this.log('Skipping dependencies installation, you can run ' 

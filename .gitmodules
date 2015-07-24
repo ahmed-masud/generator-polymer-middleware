@@ -1,3 +1,0 @@
-[submodule "generators/app"]
-	path = generators/app
-	url = git@github.com:ahmed-masud/yo-express-polymer-app.git

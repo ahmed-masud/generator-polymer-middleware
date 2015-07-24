@@ -7,29 +7,29 @@ var bodyParser = require('body-parser');
 
 var routes = require('./routes/index');
 
-var app = express();
+var appServer = express();
 
 // TODO: change this to make it into a streaming view
 // view engine setup
 
 <%= viewEngineInit %>
-app.set('views', path.join(__dirname, 'app'));
-app.set('view engine', '<%= viewEngine %>');
+appServer.set('views', path.join(__dirname, 'app'));
+appServer.set('view engine', '<%= viewEngine %>');
 
 
-// uncomment after placing your favicon in /app
-//app.use(favicon(path.join(__dirname, 'app', 'favicon.ico')));
-app.use(logger('dev'));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'app')));
+// uncomment after placing your favicon in ./app/
+//appServer.use(favicon(path.join(__dirname, 'app', 'favicon.ico')));
+appServer.use(logger('dev'));
+appServer.use(bodyParser.json());
+appServer.use(bodyParser.urlencoded({ extended: false }));
+appServer.use(cookieParser());
+appServer.use(express.static(path.join(__dirname, 'app')));
 
-app.use('/', routes);
+appServer.use('/', routes);
 
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
+appServer.use(function(req, res, next) {
   var err = new Error('Not Found');
   err.status = 404;
   next(err);
@@ -39,8 +39,8 @@ app.use(function(req, res, next) {
 
 // development error handler
 // will print stacktrace
-if (app.get('env') === 'development') {
-  app.use(function(err, req, res, next) {
+if (appServer.get('env') === 'development') {
+  appServer.use(function(err, req, res, next) {
     res.status(err.status || 500);
     res.render('error', {
       message: err.message,
@@ -51,7 +51,7 @@ if (app.get('env') === 'development') {
 
 // production error handler
 // no stacktraces leaked to user
-app.use(function(err, req, res, next) {
+appServer.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error', {
     message: err.message,
@@ -59,5 +59,5 @@ app.use(function(err, req, res, next) {
   });
 });
 
-app.listen(<%= serverPort %>);
-module.exports = app;
+appServer.listen(<%= serverPort %>);
+module.exports = appServer;

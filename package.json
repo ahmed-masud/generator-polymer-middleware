@@ -1,7 +1,7 @@
 {
   "name": "generator-polymer-express",
-  "version": "0.0.2",
-  "description": "Yeoman generator",
+  "version": "0.0.3",
+  "description": "Yeoman generator for polymer + express + jade:optional + ejs:optional + gulp",
   "license": "MIT",
   "main": "generators/app/index.js",
   "repository": "ahmed-masud/generator-polymer-express",
@@ -17,7 +17,10 @@
     "generators"
   ],
   "keywords": [
-    "yeoman-generator"
+    "yeoman-generator",
+    "polymer",
+    "express",
+    "polymer-express"
   ],
   "dependencies": {
     "chalk": "^1.0.0",

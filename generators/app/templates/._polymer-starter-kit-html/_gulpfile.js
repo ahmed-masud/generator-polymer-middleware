@@ -1,5 +1,10 @@
 /*
- * Copied from polymer-starter-kit
+Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
 */
 
 'use strict';
@@ -7,15 +12,15 @@
 // Include Gulp & Tools We'll Use
 var gulp = require('gulp');
 var $ = require('gulp-load-plugins')();
-var nodemon = require('gulp-nodemon');
 var del = require('del');
 var runSequence = require('run-sequence');
-var browserSync = require('browser-sync').create();
+var browserSync = require('browser-sync');
 var reload = browserSync.reload;
 var merge = require('merge-stream');
 var path = require('path');
 var fs = require('fs');
 var glob = require('glob');
+var historyApiFallback = require('connect-history-api-fallback');
 
 var AUTOPREFIXER_BROWSERS = [
   'ie >= 10',
@@ -86,7 +91,7 @@ gulp.task('copy', function () {
   }).pipe(gulp.dest('dist'));
 
   var bower = gulp.src([
-    'app/bower_components/**/*'
+    'bower_components/**/*'
   ]).pipe(gulp.dest('dist/bower_components'));
 
   var elements = gulp.src(['app/elements/**/*.html'])
@@ -145,8 +150,7 @@ gulp.task('vulcanize', function () {
 
   return gulp.src('dist/elements/elements.vulcanized.html')
     .pipe($.vulcanize({
-      dest: DEST_DIR,
-      strip: true,
+      stripComments: true,
       inlineCss: true,
       inlineScripts: true
     }))
@@ -163,43 +167,21 @@ gulp.task('precache', function (callback) {
     if (error) {
       callback(error);
     } else {
-      files.push('index.html',  './', 
-        'bower_components/webcomponentsjs/webcomponents-lite.min.js');
+      files.push('index.html', './', 'bower_components/webcomponentsjs/webcomponents-lite.min.js');
       var filePath = path.join(dir, 'precache.json');
       fs.writeFile(filePath, JSON.stringify(files), callback);
     }
   });
 });
 
-// Perform any tasks needed to prepare routes 
-gulp.task('routes', function() {
-
-});
-
 // Clean Output Directory
 gulp.task('clean', del.bind(null, ['.tmp', 'dist']));
 
 // Watch Files For Changes & Reload
-
-
-gulp.task('nodemon', function(cb){
-  var started = false;
-  return  nodemon({
-    script: 'appserver.js'
-  }).on('start', function() {
-    if(!started) {
-      cb();
-      started = true;
-    }
-  });
-});
-
-// Watch Files For Changes & Reload
-gulp.task('serve', ['routes', 'styles', 'elements', 'images', 'nodemon'], function () {
-  
- 
-  browserSync.init({
+gulp.task('serve', ['styles', 'elements', 'images'], function () {
+  browserSync({
     notify: false,
+    logPrefix: 'PSK',
     snippetOptions: {
       rule: {
         match: '<span id="browser-sync-binding"></span>',
@@ -208,29 +190,31 @@ gulp.task('serve', ['routes', 'styles', 'elements', 'images', 'nodemon'], functi
         }
       }
     },
-
     // Run as an https by uncommenting 'https: true'
     // Note: this uses an unsigned certificate which on first access
     //       will present a certificate warning in the browser.
     // https: true,
-    proxy: "http://localhost:<%= serverPort %>",
-    browser: "google-chrome",
-    port: <%= devProxyPort %>
+    server: {
+      baseDir: ['.tmp', 'app'],
+      middleware: [ historyApiFallback() ],
+      routes: {
+        '/bower_components': 'bower_components'
+      }
+    }
   });
 
-  
   gulp.watch(['app/**/*.html'], reload);
   gulp.watch(['app/styles/**/*.css'], ['styles', reload]);
   gulp.watch(['app/elements/**/*.css'], ['elements', reload]);
   gulp.watch(['app/{scripts,elements}/**/*.js'], ['jshint']);
   gulp.watch(['app/images/**/*'], reload);
-  gulp.watch(['routes/**/*'], ['routes', reload ]);
 });
 
 // Build and serve the output from the dist build
 gulp.task('serve:dist', ['default'], function () {
-  browserSync.init({
+  browserSync({
     notify: false,
+    logPrefix: 'PSK',
     snippetOptions: {
       rule: {
         match: '<span id="browser-sync-binding"></span>',
@@ -243,7 +227,8 @@ gulp.task('serve:dist', ['default'], function () {
     // Note: this uses an unsigned certificate which on first access
     //       will present a certificate warning in the browser.
     // https: true,
-    server: 'dist'
+    server: 'dist',
+    middleware: [ historyApiFallback() ]
   });
 });
 
@@ -253,13 +238,14 @@ gulp.task('default', ['clean'], function (cb) {
     ['copy', 'styles'],
     'elements',
     ['jshint', 'images', 'fonts', 'html'],
-    'vulcanize', 'precache',
+    'vulcanize',
     cb);
+    // Note: add , 'precache' , after 'vulcanize', if your are going to use Service Worker
 });
 
 // Load tasks for web-component-tester
 // Adds tasks for `gulp test:local` and `gulp test:remote`
-try { require('web-component-tester').gulp.init(gulp); } catch (err) {}
+require('web-component-tester').gulp.init(gulp);
 
 // Load custom tasks from the `tasks` directory
 try { require('require-dir')('tasks'); } catch (err) {}
