@@ -206,6 +206,8 @@ module.exports = yeoman.generators.Base.extend({
 
       files[path.join(starterKit, 'elements/._appname/._appname.html')] = 
         path.join('app/elements/', this.props.appname, this.props.appname + '.html');
+      files[path.join(starterKit, 'elements/._appname/._appname.css')] = 
+        path.join('app/elements/', this.props.appname, this.props.appname + '.css');
       files[path.join(starterKit, 'scripts/._appname.js')] = 
         path.join('app/scripts', this.props.appname +'.js');
 
