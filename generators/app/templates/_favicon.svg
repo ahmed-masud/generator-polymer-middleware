@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="320pt" version="1.1" xmlns="http://www.w3.org/2000/svg" height="400pt" viewBox="0 0 320 400" xmlns:xlink="http://www.w3.org/1999/xlink">
+ <title>Group</title>
+ <desc>Created with Sketch.</desc>
+ <defs>
+  <clipPath id="Clip0">
+   <path d="M0 0 L320 0 L320 400 L0 400 L0 0 Z" transform="translate(0, 0)"/>
+  </clipPath>
+  <clipPath id="Clip1">
+   <path d="M0 0 L320 0 L320 400 L0 400 L0 0 Z" transform="translate(0, 0)"/>
+  </clipPath>
+  <clipPath id="Clip2">
+   <path d="M0 0 L320 0 L320 400 L0 400 L0 0 Z" transform="translate(0, 0)"/>
+  </clipPath>
+  <clipPath id="Clip3">
+   <path d="M0 0 L320 0 L320 400 L0 400 L0 0 Z" transform="translate(0, 0)"/>
+  </clipPath>
+  <clipPath id="Clip4">
+   <path d="M0 0 L320 0 L320 400 L0 400 L0 0 Z" transform="translate(0, 0)"/>
+  </clipPath>
+  <clipPath id="Clip5">
+   <path d="M0 0 L320 0 L320 400 L0 400 L0 0 Z" transform="translate(0, 0)"/>
+  </clipPath>
+  <clipPath id="Clip6">
+   <path d="M0 0 L160.5 0 L160.5 130 L0 130 L0 0 Z" transform="translate(0, 215)"/>
+  </clipPath>
+  <clipPath id="Clip7">
+   <path d="M0 0 L160.5 0 L160.5 130 L0 130 L0 0 Z" transform="translate(0, 215)"/>
+  </clipPath>
+  <clipPath id="Clip8">
+   <path d="M0 0 L159.267 0 L159.267 89.375 L0 89.375 L0 0 Z" transform="translate(0.615764, 235.312)"/>
+  </clipPath>
+  <clipPath id="Clip9">
+   <path d="M0 0 L63.7069 0 L63.7069 67.0312 L0 67.0312 L0 0 Z" transform="translate(96.1758, 257.656)"/>
+  </clipPath>
+ </defs>
+ <g id="Background">
+  <g id="Group6" clip-path="url(#Clip0)">
+   <g id="Page-1" clip-path="url(#Clip1)">
+    <g id="passport_logo_final" clip-path="url(#Clip2)">
+     <g id="Group" clip-path="url(#Clip3)">
+      <g id="Shape" clip-path="url(#Clip4)">
+       <g id="Group1" clip-path="url(#Clip5)">
+        <path style="fill:#d9ff00; fill-rule:evenodd;stroke:none;" d="M160 0 C71.6 0 0 71.6 0 160 L80 160 C80 115.84 115.84 80 160 80 L160 0 L160 0 Z" transform="translate(0, 0)"/>
+        <path style="fill:#33e279; fill-rule:evenodd;stroke:none;" d="M160 160 C160 71.6 88.4 0 0 0 L0 80 C44.16 80 80 115.84 80 160 L160 160 L160 160 Z" transform="translate(160, 0)"/>
+        <path style="fill:#00bdf1; fill-rule:evenodd;stroke:none;" d="M0 160 C88.4 160 160 88.4 160 0 L80 0 C80 44.16 44.16 80 0 80 L0 160 L0 160 Z" transform="translate(160, 160)"/>
+        <path style="fill:#ffffff; fill-rule:evenodd;stroke:none;" d="M80 160 L80 0 L0 0 L0 240 L160 240 L160 160 L80 160 Z" transform="translate(0, 160)"/>
+       </g>
+      </g>
+     </g>
+    </g>
+   </g>
+  </g>
+  <g id="Layer_1" clip-path="url(#Clip6)">
+   <g id="Group9" clip-path="url(#Clip7)">
+    <g id="Group8" clip-path="url(#Clip8)">
+     <path style="fill:#30409f; fill-rule:nonzero;stroke:none;" d="M15.9261 0 L0 22.3437 L15.9261 44.6875 L31.8523 22.3437 L15.9261 0 Z" transform="translate(16.5431, 280)"/>
+     <path style="fill:#3f53b5; fill-rule:nonzero;stroke:none;" d="M15.9269 0 L0 22.3437 L15.9269 44.6875 L31.8531 22.3437 L15.9269 0 Z" transform="translate(112.103, 235.312)"/>
+     <path style="fill:#7987cb; fill-rule:nonzero;stroke:none;" d="M47.7808 0 L0 67.0312 L31.8546 67.0312 L63.7069 22.3437 L47.7808 0 Z" transform="translate(96.1758, 257.656)"/>
+     <path style="fill:#ff4083; fill-rule:nonzero;stroke:none;" d="M63.7065 0 L0 89.375 L31.8546 89.375 L95.5611 0 L63.7065 0 Z" transform="translate(32.4692, 235.312)"/>
+     <path style="fill:#526ffe; fill-rule:nonzero;stroke:none;" d="M31.8535 0 L0 44.6875 L15.9273 67.0312 L63.7079 0 L31.8535 0 Z" transform="translate(0.615764, 235.312)"/>
+     <path style="fill:#ffffff; fill-rule:nonzero; fill-opacity:0.2;stroke:none;" d="M0 0 L15.9277 22.3437 L31.8546 0 L0 0 Z" transform="translate(96.1758, 235.312)"/>
+     <path style="fill:#ffffff; fill-rule:nonzero; fill-opacity:0.1;stroke:none;" d="M0 22.3437 L15.9257 0 L31.8535 22.3437 L0 22.3437 Z" transform="translate(80.25, 235.312)"/>
+     <path style="fill:#ffffff; fill-rule:nonzero; fill-opacity:0;stroke:none;" d="M0 0 L15.9257 22.3437 L31.8535 0 L0 0 Z" transform="translate(80.25, 257.656)"/>
+     <path style="fill:#161413; fill-rule:nonzero; fill-opacity:0.1;stroke:none;" d="M0 22.3437 L15.9261 0 L31.8519 22.3437 L0 22.3437 Z" transform="translate(64.3238, 257.656)"/>
+     <path style="fill:#161413; fill-rule:nonzero; fill-opacity:0.2;stroke:none;" d="M0 0 L15.9261 22.3437 L31.8519 0 L0 0 Z" transform="translate(64.3238, 280)"/>
+     <path style="fill:#161413; fill-rule:nonzero; fill-opacity:0.3;stroke:none;" d="M0 22.3437 L15.9277 0 L31.8539 22.3437 L0 22.3437 Z" transform="translate(48.3962, 280)"/>
+     <path style="fill:#161413; fill-rule:nonzero; fill-opacity:0.4;stroke:none;" d="M0 0 L15.9277 22.3437 L31.8539 0 L0 0 Z" transform="translate(48.3962, 302.344)"/>
+     <path style="fill:#161413; fill-rule:nonzero; fill-opacity:0.5;stroke:none;" d="M0 22.3437 L15.9269 0 L31.8546 22.3437 L0 22.3437 Z" transform="translate(32.4692, 302.344)"/>
+     <path style="fill:#ffffff; fill-rule:nonzero; fill-opacity:0.2;stroke:none;" d="M0 0 L15.9269 22.3437 L31.8546 0 L0 0 Z" transform="translate(32.4692, 235.312)"/>
+     <path style="fill:#ffffff; fill-rule:nonzero; fill-opacity:0.1;stroke:none;" d="M0 22.3437 L15.9261 0 L31.8531 22.3437 L0 22.3437 Z" transform="translate(16.5431, 235.312)"/>
+     <path style="fill:#ffffff; fill-rule:nonzero; fill-opacity:0;stroke:none;" d="M0 0 L15.9261 22.3437 L31.8531 0 L0 0 Z" transform="translate(16.5431, 257.656)"/>
+     <path style="fill:#161413; fill-rule:nonzero; fill-opacity:0.1;stroke:none;" d="M0 22.3437 L15.9265 0 L31.8527 22.3437 L0 22.3437 Z" transform="translate(0.616536, 257.656)"/>
+     <path style="fill:#161413; fill-rule:nonzero; fill-opacity:0.2;stroke:none;" d="M0 0 L15.9265 22.3437 L31.8527 0 L0 0 Z" transform="translate(0.616536, 280)"/>
+     <path style="fill:#ffffff; fill-rule:nonzero; fill-opacity:0;stroke:none;" d="M31.8531 22.3437 L15.9261 0 L0 22.3437 L31.8531 22.3437 Z" transform="translate(16.5431, 280)"/>
+     <path style="fill:#161413; fill-rule:nonzero; fill-opacity:0.2;stroke:none;" d="M31.8531 0 L15.9261 22.3437 L0 0 L31.8531 0 Z" transform="translate(16.5431, 302.344)"/>
+     <path style="fill:#161413; fill-rule:nonzero; fill-opacity:0.2;stroke:none;" d="M31.8531 22.3437 L15.9269 0 L0 22.3437 L31.8531 22.3437 Z" transform="translate(112.103, 235.312)"/>
+     <path style="fill:#ffffff; fill-rule:nonzero; fill-opacity:0;stroke:none;" d="M31.8531 0 L15.9269 22.3437 L0 0 L31.8531 0 Z" transform="translate(112.103, 257.656)"/>
+     <g id="Group7" clip-path="url(#Clip9)">
+      <path style="fill:#ffffff; fill-rule:nonzero; fill-opacity:0.2;stroke:none;" d="M0 22.3437 L15.9261 0 L31.8523 22.3437 L0 22.3437 Z" transform="translate(128.03, 257.656)"/>
+      <path style="fill:#ffffff; fill-rule:nonzero; fill-opacity:0.1;stroke:none;" d="M0 0 L15.9261 22.3437 L31.8523 0 L0 0 Z" transform="translate(128.03, 280)"/>
+      <path style="fill:#ffffff; fill-rule:nonzero; fill-opacity:0;stroke:none;" d="M0 22.3437 L15.9269 0 L31.8531 22.3437 L0 22.3437 Z" transform="translate(112.103, 280)"/>
+      <path style="fill:#161413; fill-rule:nonzero; fill-opacity:0.1;stroke:none;" d="M0 0 L15.9269 22.3437 L31.8531 0 L0 0 Z" transform="translate(112.103, 302.344)"/>
+      <path style="fill:#161413; fill-rule:nonzero; fill-opacity:0.2;stroke:none;" d="M0 22.3437 L15.9277 0 L31.8546 22.3437 L0 22.3437 Z" transform="translate(96.1758, 302.344)"/>
+     </g>
+    </g>
+    <path style="fill:none;stroke:none;" d="M0 0 L160.5 0 L160.5 130 L0 130 L0 0 Z" transform="translate(0, 215)"/>
+   </g>
+  </g>
+ </g>
+</svg>
