@@ -1,7 +1,4 @@
-# yo-express-polymer-app
-<<<<<<< HEAD
-
-Submodule for yo-express-polymer with support for Polymer 2.0
+Submodule for yo-express-polymer with support for Polymer 1.0
 
 # Disclaimer
 I am a back-end server-side programmer, UI/UX design is something I'm only now delving in, so my design-patterns may be way off. I will work under the following principles:
@@ -33,4 +30,3 @@ This sub-module adds support for express+polymer-1.0 interweaving for the yeoman
 polymer-express generator found at https://github.com/ahmed-masud/generator-polymer-express
 
 More changes 
->>>>>>> master
