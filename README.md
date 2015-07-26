@@ -10,11 +10,9 @@ router, and pure-html and jade templates.
 
 	yo polymer-express
 
-## NOTE: THE FOLLOWING IS INCOMPLETE 
 ### Generate an element interactively (supports jaded elements or normal polymer elements)
 
-	yo polymer-express:el <element-name>
-
+	*coming soon*
 
 ## Introduction
 
