@@ -59,7 +59,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <span id="browser-sync-binding"></span>
   <template is="dom-bind" id="app">
 
-    <<%= appname %>></<%= appname %>>
+    <!-- map app.route and app.params from route.html to app's internal
+         attributes -->
+    <<%= appname %> route="{{route}}" params="{{params}}"></<%= appname %>>
     <!-- Uncomment next block to enable Service Worker support (1/2) -->
     <!--
     <paper-toast id="caching-complete"
@@ -80,7 +82,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   </template>
 
   <!-- build:js scripts/app.js -->
-  <script src="scripts/app.js"></script>
+  <script src="scripts/<%= appname %>.js"></script>
   <!-- endbuild-->
 </body>
 
