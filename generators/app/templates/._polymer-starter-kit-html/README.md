@@ -220,6 +220,7 @@ If for any reason you need to disable Service Worker support after previously en
 
 [generator-polymer](https://github.com/yeoman/generator-polymer/releases) now includes support for Polymer Starter Kit out of the box.
 
+[generator-polymer-express](https://github/y)
 ## Frequently Asked Questions
 
 ### Where do I customise my application theme?

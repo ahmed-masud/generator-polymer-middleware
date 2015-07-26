@@ -33,18 +33,15 @@ module.exports = yeoman.generators.Base.extend({
         , viewEngineInit: ''
       };
 
-      try  { 
+      try  {
         fs.accessSync(this.destinationPath('package.json'));
         this.log('I found an existing ' + chalk.cyan('package.json') + ' file, slurping it for some defaults');
         var pj = require(this.destinationPath('package.json'));
 
         this.props.appname = pj.name || this.props.appname;
-        this.props.title = pj.title || this.props.title;
-        this.props.version = pj.version || this.props.version;
-        this.generator = pj.generator || this.props.generator;
-        this.license = pj.license || this.props.license;
-        this.starterKit = pj.starterKit || this.props.starterKit;
-        this.viewEngine = pj.viewEngine || this.props.viewEngine; 
+        for ( k in ['title', 'version', 'generator', 'license', 'starterKit', 'viewEngine']) {
+          this.props[k] = pj[k] || this.props[k];
+        }
       } catch(err) {
         // do nothing here as fs.accessSync threw something
       }
@@ -164,21 +161,19 @@ module.exports = yeoman.generators.Base.extend({
 
     projectfiles: function () {
       var files = {
-        'minimal-html': {
+        'common': {
           'editorconfig': '.editorconfig',
           'jshintrc': '.jshintrc',
           'bowerrc': '.bowerrc',
           'yo-rc.json': '.yo-rc.json',
           'wct.conf.json': 'wct.conf.json'
-        },
-
-        'polymer-starter-kit-html' : {
-
         }
       };
-
-      for(var file in files[this.starterKitEngine]) {
-        var dest = files[this.starterKitEngine][file];
+      var filelist = {};
+      _.merge(filelist, files['common']);
+      _.merge(filelist, files[this.starterKitEngine]|| {});
+      for(var file in filelist) {
+        var dest = filelist[file];
         this.log(chalk.yellow('copying ') + chalk.white.bold(file));
 
         this.fs.copy(
@@ -204,11 +199,11 @@ module.exports = yeoman.generators.Base.extend({
       };
       var starterKit = this.starterKitDir;
 
-      files[path.join(starterKit, 'elements/._appname/._appname.html')] = 
+      files[path.join(starterKit, 'elements/._appname/._appname.html')] =
         path.join('app/elements/', this.props.appname, this.props.appname + '.html');
-      files[path.join(starterKit, 'elements/._appname/._appname.css')] = 
+      files[path.join(starterKit, 'elements/._appname/._appname.css')] =
         path.join('app/elements/', this.props.appname, this.props.appname + '.css');
-      files[path.join(starterKit, 'scripts/._appname.js')] = 
+      files[path.join(starterKit, 'scripts/._appname.js')] =
         path.join('app/scripts', this.props.appname +'.js');
 
       for (var file in files) {
@@ -227,7 +222,7 @@ module.exports = yeoman.generators.Base.extend({
         ,'**/*.css' : 'app'
         ,'**/*.js'  : 'app'
         ,'**/*.png' : 'app'
-        ,'**/*.jpg' : 'app'        
+        ,'**/*.jpg' : 'app'
       };
 
       var kits = ['._common', starterKit ];
@@ -263,7 +258,7 @@ module.exports = yeoman.generators.Base.extend({
           this.installDependencies();
         }
         else {
-          this.log('Skipping dependencies installation, you can run ' 
+          this.log('Skipping dependencies installation, you can run '
             + chalk.bold.yellow('npm install') + ' and ' + chalk.bold.yellow('bower install')
             + ' at your leisure');
         }

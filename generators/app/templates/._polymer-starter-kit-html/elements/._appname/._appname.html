@@ -1,4 +1,36 @@
+/*
+ * @license
+ * Distributed under BSD License as per Polymer-1.0
+ * This code is Copyright (c) 2015 The Polymer Authors
+ *
+ * Redistributions of source code must retain the above copyright
+ * notice, this list of conditions and the following disclaimer.
+ * Redistributions in binary form must reproduce the above
+ * copyright notice, this list of conditions and the following disclaimer
+ * in the documentation and/or other materials provided with the
+ * distribution.
+ * Neither the name of Google Inc. nor the names of its
+ * contributors may be used to endorse or promote products derived from
+ * this software without specific prior written permission.
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+ * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+ * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+ * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+ * POSSIBILITY OF SUCH DAMAGE.
+ */
+
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../my-greeting/my-greeting.html">
+<link rel="import" href="../my-list/my-list.html">
+
 <dom-module id="<%= appname %>">
+  <link rel="import" href="<%= appname %>.css" type="css">
   <template>
     <paper-drawer-panel id="paperDrawerPanel">
       <!-- Drawer Scroll Header Panel -->
@@ -11,7 +43,7 @@
 
         <!-- Drawer Content -->
         <paper-menu class="list" attr-for-selected="data-route" selected="{{route}}" on-iron-select="onMenuSelect">
-          <a data-route="home" href="/">
+          <a data-route="home" href="/" class="iron-selected">
             <iron-icon icon="home"></iron-icon>
             <span>Home</span>
           </a>
@@ -42,7 +74,7 @@
 
           <!-- Application name -->
           <div class="middle middle-container center horizontal layout">
-            <div class="app-name">Polymer Starter Kit</div>
+            <div class="app-name"><%= appname %></div>
           </div>
 
           <!-- Application sub title -->
@@ -56,7 +88,7 @@
         <div class="content">
           <iron-pages attr-for-selected="data-route" selected="{{route}}">
 
-            <section data-route="home">
+            <section data-route="home" class="iron-selected">
               <paper-material elevation="1">
                 <my-greeting></my-greeting>
 
@@ -73,6 +105,7 @@
                 <h1 id="license">License</h1>
                 <p>Everything in this repo is BSD style license unless otherwise specified.</p>
                 <p>Copyright (c) 2015 The Polymer Authors. All rights reserved.</p>
+                <p>Copyright (c) 2015 Ahmed Masud. All rights reserved.</p>
                 <p>Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:</p>
                 <ul>
                 <li>Redistributions of source code must retain the above copyright
@@ -119,4 +152,53 @@
       </paper-scroll-header-panel>
     </paper-drawer-panel>
   </template>
+  <script>
+    Polymer({
+      is: "<%= appname %>",
+
+      properties: {
+        route: {
+          type: String,
+          notify: true
+        },
+        params: {
+          type: Object,
+          notify: true
+        }
+      },
+
+      listners: {
+        'paper-header-transform': 'onPaperHeaderTransform',
+      },
+
+      onPaperHeaderTransform: function(e){
+        var appName = this.$.mainToolbar.querySelector('.app-name');
+        var middleContainer = this.$.mainToolbar.querySelector('.middle-container');
+        var bottomContainer = this.$mainToolbar.querySelector('.bottom-container');
+        var detail = e.detail;
+        var heightDiff = detail.height - detail.condensedHeight;
+        var yRatio = Math.min(1, detail.y / heightDiff);
+        var maxMiddleScale = 0.50;  // appName max size when condensed. The smaller the number the smaller the condensed size.
+        var scaleMiddle = Math.max(maxMiddleScale, (heightDiff - detail.y) / (heightDiff / (1-maxMiddleScale))  + maxMiddleScale);
+        var scaleBottom = 1 - yRatio;
+
+        // Move/translate middleContainer
+        Polymer.Base.transform('translate3d(0,' + yRatio * 100 + '%,0)', middleContainer);
+
+        // Scale bottomContainer and bottom sub title to nothing and back
+        Polymer.Base.transform('scale(' + scaleBottom + ') translateZ(0)', bottomContainer);
+
+        // Scale middleContainer appName
+        Polymer.Base.transform('scale(' + scaleMiddle + ') translateZ(0)', appName);
+
+      },
+
+      onMenuSelect: function() {
+        var drawerPanel = document.querySelector('#paperDrawerPanel');
+        if (drawerPanel.narrow) {
+            drawerPanel.closeDrawer();
+        }
+      }
+    });
+  </script>
 </dom-module>
