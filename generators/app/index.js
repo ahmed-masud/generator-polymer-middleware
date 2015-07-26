@@ -66,7 +66,7 @@ module.exports = yeoman.generators.Base.extend({
 
     // Have Yeoman greet the user.
     this.log(yosay(
-      'Welcome to the stylish ' + chalk.red('Polymer Express') + ' generator!'
+      'Welcome to the stylish ' + chalk.red('Polymer + Middleware') + ' generator!'
     ));
 
 
@@ -193,7 +193,7 @@ module.exports = yeoman.generators.Base.extend({
 
   writing: {
     app: function () {
-      // var done = this.async();
+      var done = this.async();
       var files = {
          '_package.json': 'package.json'
         ,'_bower.json': 'bower.json'
@@ -239,8 +239,12 @@ module.exports = yeoman.generators.Base.extend({
           this.utils.processGlob(kit, patterns[pattern], matches);
         }
       }
-     // done();
-    }
+     done();
+   },
+   server: function() {
+     var done = this.async();
+     done();
+   }
   },
 
   install: {
