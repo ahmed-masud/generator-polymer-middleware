@@ -1,10 +1,10 @@
 {
-  "name": "generator-polymer-express",
+  "name": "generator-polymer-middleware",
   "version": "0.2.0",
-  "description": "Yeoman generator for polymer + express + jade:optional + ejs:optional + gulp",
+  "description": "Yeoman generator for polymer + [express|hapi|koa] + [jade|html] + gulp",
   "license": "MIT",
   "main": "generators/app/index.js",
-  "repository": "ahmed-masud/generator-polymer-express",
+  "repository": "ahmed-masud/generator-polymer-middleware",
   "author": {
     "name": "Ahmed Masud",
     "email": "ahmed.masud@trustifier.com",
@@ -19,7 +19,12 @@
   "keywords": [
     "yeoman-generator",
     "polymer",
+    "polymer 1.0",
     "express",
+    "koa",
+    "hapi",
+    "polymer-koa",
+    "polymer-hapi",
     "polymer-express"
   ],
   "dependencies": {
