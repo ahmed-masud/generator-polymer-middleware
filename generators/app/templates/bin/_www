@@ -5,7 +5,7 @@
  */
 
 
-var app = require('../dist/app');
+var app = require('../dist/server/appserver');
 var debug = require('debug')('<%= appname %>:server');
 var http = require('http');
 

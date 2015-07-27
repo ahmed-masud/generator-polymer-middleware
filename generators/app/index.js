@@ -31,22 +31,35 @@ module.exports = yeoman.generators.Base.extend({
         , skipInstall: !!true
         , viewEngine: 'html'
         , viewEngineInit: ''
+        , middleWare: 'HAPI'
+        , backEnd: 'ElasticJS'
       };
 
       try  {
         fs.accessSync(this.destinationPath('package.json'));
-        this.log('I found an existing ' + chalk.cyan('package.json') + ' file, slurping it for some defaults');
-        var pj = require(this.destinationPath('package.json'));
-
-        this.props.appname = pj.name || this.props.appname;
-        for ( k in ['title', 'version', 'generator', 'license', 'starterKit', 'viewEngine']) {
-          this.props[k] = pj[k] || this.props[k];
-        }
+        var pj = require(this.destinationPath('package.json'))['generator-settings'];
+        if ( typeof pj != 'object')
+          throw new Error("No settings found, skipping");
+        this.log('I found an existing ' + chalk.cyan('package.json') + ' file with generator defaults');
+        _.merge(this.props, pj);
       } catch(err) {
         // do nothing here as fs.accessSync threw something
       }
 
       this.utils = {};
+      this.utils.processFiles = function(filelist) {
+        for(var file in filelist) {
+          var dest = filelist[file];
+          this.log(chalk.yellow('copying ') + chalk.white.bold(file));
+
+          this.fs.copyTpl(
+            this.templatePath(file),
+            this.destinationPath(dest),
+            this.props
+          );
+        }
+      }.bind(this);
+
       this.utils.processGlob = function(src, dest, files) {
         for(var file in files) {
           var _src = this.templatePath(path.join(src, files[file]));
@@ -54,7 +67,7 @@ module.exports = yeoman.generators.Base.extend({
           this.log('processing ' + chalk.green(src) + ' to ' + chalk.white.bold(dest));
           this.fs.copyTpl(_src, _dest, this.props);
         }
-      }.bind(this)
+      }.bind(this);
   },
 
 
@@ -133,6 +146,20 @@ module.exports = yeoman.generators.Base.extend({
       default: this.props.starterKit
     },
     {
+      type: 'list',
+      name: 'middleWare',
+      message: 'Which middleware do you prefer to use?',
+      choices: [ 'None', 'Express', 'Koa', 'HAPI' ],
+      default: this.props.middleWare
+    },
+    {
+      type: 'list',
+      name: 'backEnd',
+      message: 'Which back-end would you prefer to use?',
+      choices: ['None', 'ElasticJS', 'MongoDB'],
+      default: this.props.backEnd
+    },
+    {
       type: 'confirm',
       name: 'skipInstall',
       message: 'Would you like me to skip npm install & bower install?',
@@ -172,15 +199,7 @@ module.exports = yeoman.generators.Base.extend({
       var filelist = {};
       _.merge(filelist, files['common']);
       _.merge(filelist, files[this.starterKitEngine]|| {});
-      for(var file in filelist) {
-        var dest = filelist[file];
-        this.log(chalk.yellow('copying ') + chalk.white.bold(file));
-
-        this.fs.copy(
-          this.templatePath(file),
-          this.destinationPath(dest)
-        );
-      }
+      this.utils.processFiles(filelist);
     }
   },
 
@@ -194,8 +213,6 @@ module.exports = yeoman.generators.Base.extend({
         ,'_bower.json': 'bower.json'
         ,'_gulpfile.js': 'gulpfile.js'
         ,'bin/_www': 'bin/www'
-        ,'_appserver.js': 'appserver.js'
-        ,'routes/': 'routes/'
       };
       var starterKit = this.starterKitDir;
 
@@ -206,16 +223,7 @@ module.exports = yeoman.generators.Base.extend({
       files[path.join(starterKit, 'scripts/._appname.js')] =
         path.join('app/scripts', this.props.appname +'.js');
 
-      for (var file in files) {
-        var dest = files[file];
-        this.log('copying ' + chalk.bold.white(file));
-        this.fs.copyTpl(
-          this.templatePath(file),
-          this.destinationPath(dest),
-          this.props
-        );
-      }
-
+      this.utils.processFiles(files);
       // globs from kits: destination root
       var patterns = {
          '**/*.html': 'app'
@@ -235,11 +243,54 @@ module.exports = yeoman.generators.Base.extend({
         }
       }
      done();
-   },
-   server: function() {
+   }
+   , middleware: function() {
      var done = this.async();
+     var files = {
+       'none': {}
+       , 'Express': {
+         '_appserver.js': 'appserver.js'
+         , 'routes/': 'routes/'
+        }
+       , 'Koa' : { }
+       , 'HAPI': { }
+     };
+
+     // fix paths for all the files
+     var _files = {};
+     var _srcprefix = "._" + this.props.middleWare.toLowerCase();
+     var _destprefix = ".";
+     if(files[this.props.middleWare] !== null) {
+       for(var key in files[this.props.middleWare]) {
+         this.log(_files[path.join("._middleware", _srcprefix, key)]
+          = path.join(_destprefix, files[this.props.middleWare][key]));
+       }
+     }
+     this.utils.processFiles(_files);
+
      done();
    }
+   , backend: function() {
+     var done = this.async();
+     var files = {
+       'none': {}
+      ,'MongoDB': {}
+      ,'ElasticJS': {}
+     };
+
+     var _files = {};
+     var _srcprefix = "._" + this.props.backEnd.toLowerCase();
+     var _destprefix = "server";
+     if(files[this.props.backEnd] !== null) {
+       for(var key in files[this.props.backEnd]) {
+         _files[path.join("._backend", _srcprefix, key)]
+          = path.join(_destprefix, files[this.props.backEnd][key])
+       }
+     }
+     this.utils.processFiles(_files);
+     done();
+   }
+
   },
 
   install: {
