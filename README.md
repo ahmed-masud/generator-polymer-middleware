@@ -1,7 +1,7 @@
-# generator-polymer-express
+# generator-polymer-middleware
 
-Yoeman Generator for express-polymer with support for Polymer 1.0, express as server-side
-router, and pure-html and jade templates.
+Yoeman Generator for polymer elements and a bunch of middleware (express, koa, hapi) 
+with support for Polymer 1.0 and either a mongodb or an elasticjs back-end (may combine the two since elastic is a bit wonky on writes)
 
 
 ## Usage
