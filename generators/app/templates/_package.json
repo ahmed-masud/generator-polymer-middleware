@@ -1,33 +1,33 @@
 {
-   "name": "<%= appname %>"
+   "name": "<?= appname ?>"
   , "private": true
   , "generator-settings": {
-       "appname": "<%= appname %>"
-     , "title": "<%= title %>"
-     , "version": "<%= version %>"
-     , "generator": "<%= generator %>"
-     , "license": "<%= license %>"
-     , "viewEngine": "<%= viewEngine %>"
-     , "starterKit": "<%= starterKit %>"
-     , "serverPort": <%= serverPort %>
-     , "devProxyPort": <%= devProxyPort %>
-     , "addPassport": <%= addPassport %>
-     , "skipInstall": <%= skipInstall %>
-     , "viewEngine": "<%= viewEngine %>"
-     , "middleWare": "<%= middleWare %>"
-     , "backEnd": "<%= backEnd %>"
+       "appname": "<?= appname ?>"
+     , "title": "<?= title ?>"
+     , "version": "<?= version ?>"
+     , "generator": "<?= generator ?>"
+     , "license": "<?= license ?>"
+     , "viewEngine": "<?= viewEngine ?>"
+     , "starterKit": "<?= starterKit ?>"
+     , "serverPort": <?= serverPort ?>
+     , "devProxyPort": <?= devProxyPort ?>
+     , "addPassport": <?= addPassport ?>
+     , "skipInstall": <?= skipInstall ?>
+     , "viewEngine": "<?= viewEngine ?>"
+     , "middleWare": "<?= middleWare ?>"
+     , "backEnd": "<?= backEnd ?>"
   }
   , "dependencies": {
       "serve-favicon": "^2.3.0",
       "body-parser": "^1.13.0",
       "morgan": "^1.6.0",
       "debug": "^2.0.0",
-      "cookie-parser": "^1.3.5"<% if (middleWare =="Express") { %>,
-      "express": "^4.0.0"<% } else if(middleWare == "HAPI") { %>,
-      "hapi": "^8.8.0"<% } else if (middleWare == "Koa") { %>,
-      "koa": "^0.21.0"<% } %><% if (viewEngine == "html") { %>,
+      "cookie-parser": "^1.3.5"<? if (middleWare =="Express") { ?>,
+      "express": "^4.0.0"<? } else if(middleWare == "HAPI") { ?>,
+      "hapi": "^8.8.0"<? } else if (middleWare == "Koa") { ?>,
+      "koa": "^0.21.0"<? } ?><? if (viewEngine == "html") { ?>,
       "ehp": ">=1.0.0"
-      <% } %>
+      <? } ?>
   }
 
   , "devDependencies": {
@@ -66,9 +66,9 @@
 
   , "engines": {
       "node": ">=0.10.0"
-      <% if (viewEngine == "html") { %>
+      <? if (viewEngine == "html") { ?>
       , "ehp": ">=1.0.0"
-      <% } %>
+      <? } ?>
   }
 
   , "scripts" : {

@@ -213,9 +213,9 @@ gulp.task('serve', ['routes', 'styles', 'elements', 'images', 'nodemon'], functi
     // Note: this uses an unsigned certificate which on first access
     //       will present a certificate warning in the browser.
     // https: true,
-    proxy: "http://localhost:<%= serverPort %>",
+    proxy: "http://localhost:<?= serverPort ?>",
     browser: "google-chrome",
-    port: <%= devProxyPort %>
+    port: <?= devProxyPort ?>
   });
 
   

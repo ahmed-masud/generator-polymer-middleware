@@ -55,7 +55,8 @@ module.exports = yeoman.generators.Base.extend({
           this.fs.copyTpl(
             this.templatePath(file),
             this.destinationPath(dest),
-            this.props
+            this.props,
+            { delimiter: '\?' }
           );
         }
       }.bind(this);
@@ -65,7 +66,7 @@ module.exports = yeoman.generators.Base.extend({
           var _src = this.templatePath(path.join(src, files[file]));
           var _dest = this.destinationPath(path.join(dest, files[file]));
           this.log('processing ' + chalk.green(src) + ' to ' + chalk.white.bold(dest));
-          this.fs.copyTpl(_src, _dest, this.props);
+          this.fs.copyTpl(_src, _dest, this.props, { delimiter: '\?'} );
         }
       }.bind(this);
   },

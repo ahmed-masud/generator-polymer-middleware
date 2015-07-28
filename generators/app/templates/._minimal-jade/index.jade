@@ -2,7 +2,7 @@ doctype html
 html(lang='')
   head
     meta(charset='utf-8')
-    meta(name='description', content='<%= title %>')
+    meta(name='description', content='<?= title ?>')
     meta(name='viewport', content='width=device-width, initial-scale=1')
     meta(name='generator', content='Polymer Express Minimal Kit')
     // Place favicon.ico and apple-touch-icon.png in the root directory
@@ -30,6 +30,6 @@ html(lang='')
     span#browser-sync-binding
     template#app(is='dom-bind')
       | <
-    // build:js scripts/<%= appname %>.js
-    script(src='scripts/<%= appname %>.js')
+    // build:js scripts/<?= appname ?>.js
+    script(src='scripts/<?= appname ?>.js')
     // endbuild

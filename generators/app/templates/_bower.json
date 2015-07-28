@@ -1,8 +1,8 @@
 {
-  "name": "<%= appname %>",
-  "version": "<%= version %>",
-  "title": "<%= title %>",
-  "license": "<%= license %>",
+  "name": "<?= appname ?>",
+  "version": "<?= version ?>",
+  "title": "<?= title ?>",
+  "license": "<?= license ?>",
   "dependencies": {
     "polymer": "Polymer/polymer#^1.0.0"
     ,"page": "visionmedia/page.js#^1.6.3"
