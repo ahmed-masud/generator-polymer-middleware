@@ -25,10 +25,11 @@ It utilizes gulp for code-twiddling.
 It interweaves Polymer and Express in a way that actually works with both paradigms (that's 
 mostly thanks to express being highly unopinionated).
 
-Currently there are two flavors of front-end generators available:
+Currently there are three flavors of front-end generators available:
 
-	1) html
-	2) jade
+	1) html 
+        2) EJS
+	3) jade
 
 and there are two starting templates:
 
@@ -49,6 +50,8 @@ keeping the </> movement is alive -- and I am currently one of them (which makes
 into a markdown document kind of ironic).  For those of us, that do not want to template in 
 jade, there is the html option
 
+### EJS
+Because it was being requested.  It's there but is not fully tested.
 
 ### Examples
 
