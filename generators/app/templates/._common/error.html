@@ -1,10 +1,10 @@
 <!doctype html>
 <html>
 <head>
-	<title><%= err %>: <%= message %></title>
+	<title><%- error %>: <%- message %></title>
 </head>
 <body>
-	<h1>500: Internal Error</h1>
+	<h1><%- error.status %>: <%- error %></h1>
 	<p>
 		Not quite sure what happened here buddy.
 	</p>
