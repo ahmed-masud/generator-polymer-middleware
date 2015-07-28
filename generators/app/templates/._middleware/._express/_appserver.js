@@ -12,18 +12,22 @@ var appServer = express();
 // TODO: change this to make it into a streaming view
 // view engine setup
 
+appServer.set('views', path.join(__dirname, 'app'));
+
 <? if(viewEngine == "html") { -?>
 appServer.engine('html', require('ehp').renderFile);
+appServer.set('view engine', 'html');
 <? } else if(viewEngine == "ejs") { -?>
-appServer.engine('html', require('ejs'));
+appServer.engine('html', require('ejs').__express);
+appServer.set('view engine', 'html');
 <? } else if(viewEngine == "jade") { -?>
-appServer.engine('jade', require('jade'));
+appServer.engine('jade', require('jade').__express);
+appServer.set('view engine', 'jade');
 <? } else { ?>
-appServer.engine('html', require('ejs'));
+appServer.engine('html', require('ejs').__express);
+appServer.set('view engine', 'html');
 <? } ?>
 
-appServer.set('views', path.join(__dirname, 'app'));
-appServer.set('view engine', '<?= viewEngine ?>');
 
 
 // uncomment after placing your favicon in ./app/
@@ -56,7 +60,7 @@ appServer.use(function(req, res, next) {
 if (appServer.get('env') === 'development') {
   appServer.use(function(err, req, res, next) {
     res.status(err.status || 500);
-    res.render(<?= errorRenderer ?>, {
+    res.render(<?- errorRenderer ?>, {
       message: err.message,
       error: err
     });
@@ -67,7 +71,7 @@ if (appServer.get('env') === 'development') {
 // no stacktraces leaked to user
 appServer.use(function(err, req, res, next) {
   res.status(err.status || 500);
-  res.render(<?= errorRenderer ?>, {
+  res.render(<?- errorRenderer ?>, {
     message: err.message,
     error: {}
   });

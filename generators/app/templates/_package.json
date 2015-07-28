@@ -26,8 +26,8 @@
       "express": "^4.0.0"<? } else if(middleWare == "HAPI") { ?>,
       "hapi": "^8.8.0"<? } else if (middleWare == "Koa") { ?>,
       "koa": "^0.21.0"<? } ?><? if (viewEngine == "html") { ?>,
-      "ehp": ">=1.0.0"
-      <? } ?>
+      "ehp": ">=1.0.0"<? } else if (viewEngine == "ejs") { ?>,
+      "ejs": "^2.3.3" <? } ?>
   }
 
   , "devDependencies": {
