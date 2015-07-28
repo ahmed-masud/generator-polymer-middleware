@@ -30,7 +30,6 @@ module.exports = yeoman.generators.Base.extend({
         , starterKit: 'minimal'
         , skipInstall: !!true
         , viewEngine: 'html'
-        , viewEngineInit: ''
         , middleWare: 'HAPI'
         , backEnd: 'ElasticJS'
       };
@@ -55,7 +54,8 @@ module.exports = yeoman.generators.Base.extend({
           this.fs.copyTpl(
             this.templatePath(file),
             this.destinationPath(dest),
-            this.props
+            this.props,
+            { delimiter: '\?' }
           );
         }
       }.bind(this);
@@ -65,7 +65,7 @@ module.exports = yeoman.generators.Base.extend({
           var _src = this.templatePath(path.join(src, files[file]));
           var _dest = this.destinationPath(path.join(dest, files[file]));
           this.log('processing ' + chalk.green(src) + ' to ' + chalk.white.bold(dest));
-          this.fs.copyTpl(_src, _dest, this.props);
+          this.fs.copyTpl(_src, _dest, this.props, { delimiter: '\?'} );
         }
       }.bind(this);
   },
@@ -170,12 +170,6 @@ module.exports = yeoman.generators.Base.extend({
     this.prompt(prompts, function (props) {
       _.merge(this.props, props);
       // To access props later use this.props.someOption;
-      this.props.viewEngineInit = "";
-      switch(this.props.viewEngine) {
-      case "html":
-        this.props.viewEngineInit = "appServer.engine('html', require('ehp').renderFile);";
-        break;
-      }
 
       this.starterKitEngine = this.props.starterKit + '-' + this.props.viewEngine;
       this.starterKitDir = '._' + this.starterKitEngine;

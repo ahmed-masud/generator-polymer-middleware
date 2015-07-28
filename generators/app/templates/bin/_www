@@ -6,14 +6,14 @@
 
 
 var app = require('../dist/server/appserver');
-var debug = require('debug')('<%= appname %>:server');
+var debug = require('debug')('<?= appname ?>:server');
 var http = require('http');
 
 /**
  * Get port from environment and store in Express.
  */
 
-var port = normalizePort(process.env.PORT || '<%= serverPort %>');
+var port = normalizePort(process.env.PORT || '<?= serverPort ?>');
 app.set('port', port);
 
 /**
