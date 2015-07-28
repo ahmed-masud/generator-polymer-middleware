@@ -30,7 +30,6 @@ module.exports = yeoman.generators.Base.extend({
         , starterKit: 'minimal'
         , skipInstall: !!true
         , viewEngine: 'html'
-        , viewEngineInit: ''
         , middleWare: 'HAPI'
         , backEnd: 'ElasticJS'
       };
@@ -171,12 +170,6 @@ module.exports = yeoman.generators.Base.extend({
     this.prompt(prompts, function (props) {
       _.merge(this.props, props);
       // To access props later use this.props.someOption;
-      this.props.viewEngineInit = "";
-      switch(this.props.viewEngine) {
-      case "html":
-        this.props.viewEngineInit = "appServer.engine('html', require('ehp').renderFile);";
-        break;
-      }
 
       this.starterKitEngine = this.props.starterKit + '-' + this.props.viewEngine;
       this.starterKitDir = '._' + this.starterKitEngine;
