@@ -8,7 +8,7 @@ with support for Polymer 1.0 and either a mongodb or an elasticjs back-end (may 
 
 ### Generate application interactively (supports jade or html)
 
-	yo polymer-express
+	yo polymer-middleware
 
 ### Generate an element interactively (supports jaded elements or normal polymer elements)
 

@@ -12,15 +12,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
-    <title><%= elementName %> Demo</title>
-    <script src="../../../bower_components/webcomponentsjs/webcomponents-lite.js"></script>
-    <link rel="import" href="../<%= elementName %>.html">
+    <title><?= elementName ?> Demo</title>
+    <script src="<?= pathToBower ?>/webcomponentsjs/webcomponents-lite.js"></script>
+    <link rel="import" href="../<?= elementName ?>.html">
   </head>
   <body>
 
-    <p>An example of <code>&lt;<%= elementName %>&gt;</code>:</p>
+    <p>An example of <code>&lt;<?= elementName ?>&gt;</code>:</p>
 
-    <<%= elementName %>></<%= elementName %>>
+    <<?= elementName ?>></<?= elementName ?>>
 
   </body>
 </html>

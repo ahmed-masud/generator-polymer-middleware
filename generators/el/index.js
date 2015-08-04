@@ -12,14 +12,14 @@ module.exports = yeoman.generators.Base.extend({
   };
 
   _showHelp: function (argument) {
-      
+
   },
 
   _detectType: function() {
     if(fs.exists(this.destinationPath('package.json'))) {
-     return require(this.destinationPath('pacage.json')).viewEngine;
+     return require(this.destinationPath('package.json')).generator.viewEngine;
     }
-    return null;
+    return "ejs";
   },
 
   constructor: function () {
@@ -37,7 +37,7 @@ module.exports = yeoman.generators.Base.extend({
 
     if (this.help) {
       this._showHelp();
-    } 
+    }
 
     if ( this.elementName.indexOf('-') <= 0 ) {
       this.emit('error', new Error(
@@ -48,7 +48,7 @@ module.exports = yeoman.generators.Base.extend({
     }
 
     this.props.addToElements: true;
-    this.props.elementType: this._detectType();
+    this.props.viewEngine: this._detectType();
 
     this.log(yosay(
       'Happy to generate ' + chalk.bold.yellow(this.elementName) + ' for you.'
@@ -61,7 +61,7 @@ module.exports = yeoman.generators.Base.extend({
     var done = this.async();
 
     var prompts = [];
-    prompts.push(  {    
+    prompts.push(  {
         type: 'confirm',
         name: 'addToElements',
         message: 'I can automatically add ' + chalk.bold.white(this.elementName) + ' into elements/elements.html'
@@ -69,32 +69,39 @@ module.exports = yeoman.generators.Base.extend({
         default: true
     });
     prompt.push({
-            type: 'list',
-            name: 'elementType',
-            message: 'Is this an element element or a behavior element?',
-            choices: ['element', 'behavior'],
-            default: 'element'
+      type: 'list',
+      name: 'viewEngine',
+      message: 'Is this an element element or a behavior element?',
+      choices: ['element', 'behavior'],
+      default: 'element'
     })
     prompt.push({
-            type: 'input',
-            name: 'version',
-            message: 'Give your element a version number',
-            default: '0.0.0'
+      type: 'input',
+      name: 'version',
+      message: 'Give your element a version number',
+      default: '0.0.0'
+    });
+
+    prompt.push({
+      type: 'list',
+      name: 'viewEngine',
+      choices: [ 'html', 'ejs', 'jade'],
+      default: this.props.viewEngine
     });
 
     this.prompt(prompts, function(props) {
-
       this.props = props;
       done()
     }.bind(this));
   },
 
   writing: {
-
+    this.fs.copyTpl(this.templatePath('_index.html'),
+      this.destinationPath('index.html'));
   },
 
   install: {
-    
+
   }
 
 });
