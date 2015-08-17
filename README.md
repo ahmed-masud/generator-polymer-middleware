@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/ahmed-masud/generator-polymer-middleware.svg?branch=master](https://travis-ci.org/ahmed-masud/generator-polymer-middleware)
+[![Build Status](https://travis-ci.org/ahmed-masud/generator-polymer-middleware.svg?branch=master)](https://travis-ci.org/ahmed-masud/generator-polymer-middleware)
 # generator-polymer-middleware
 
 Yoeman Generator for polymer elements and a bunch of middleware (express, koa, hapi)
