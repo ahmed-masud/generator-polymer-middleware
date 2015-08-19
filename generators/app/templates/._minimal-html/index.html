@@ -1,35 +1,38 @@
-doctype html
-html(lang='')
-  head
-    meta(charset='utf-8')
-    meta(name='description', content='<?= title ?>')
-    meta(name='viewport', content='width=device-width, initial-scale=1')
-    meta(name='generator', content='Polymer Express Minimal Kit')
-    // Place favicon.ico and apple-touch-icon.png in the root directory
-    title
-    // Chrome for Android theme color
-    meta(name='theme-color', content='#303F9F')
-    // Tile color for Win8
-    meta(name='msapplication-TileColor', content='#3372DF')
-    // Add to homescreen for Chrome on Android
-    meta(name='mobile-web-app-capable', content='yes')
-    meta(name='application-name', content='Polymer Starter Kit')
-    link(rel='icon', sizes='192x192', href='images/touch/chrome-touch-icon-192x192.png')
-    // Add to homescreen for Safari on iOS
-    meta(name='apple-mobile-web-app-capable', content='yes')
-    // build:css styles/main.css
-    link(rel='stylesheet', href='styles/main.css')
-    // endbuild
-    // build:js bower_components/webcomponentsjs/webcomponents-lite.min.js
-    script(src='bower_components/webcomponentsjs/webcomponents-lite.js')
-    // endbuild
-    // will be replaced with elements/elements.vulcanized.html
-    link(rel='import', href='elements/elements.html')
-    // endreplace
-  body.layout.vertical(unresolved='')
-    span#browser-sync-binding
-    template#app(is='dom-bind')
-      | 
-    // build:js scripts/<?= appname ?>.js
-    script(src='scripts/<?= appname ?>.js')
-    // endbuild
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    <meta charset="utf-8">
+    <meta name="description" content="&lt;?= title ?&gt;">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="Polymer Express Minimal Kit">
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory-->
+    <title></title>
+    <!-- Chrome for Android theme color-->
+    <meta name="theme-color" content="#303F9F">
+    <!-- Tile color for Win8-->
+    <meta name="msapplication-TileColor" content="#3372DF">
+    <!-- Add to homescreen for Chrome on Android-->
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="Polymer Starter Kit">
+    <link rel="icon" sizes="192x192" href="images/touch/chrome-touch-icon-192x192.png">
+    <!-- Add to homescreen for Safari on iOS-->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <!-- build:css styles/main.css-->
+    <link rel="stylesheet" href="styles/main.css">
+    <!-- endbuild-->
+    <!-- build:js bower_components/webcomponentsjs/webcomponents-lite.min.js-->
+    <script src="bower_components/webcomponentsjs/webcomponents-lite.js"></script>
+    <!-- endbuild-->
+    <!-- will be replaced with elements/elements.vulcanized.html-->
+    <link rel="import" href="elements/elements.html">
+    <!-- endreplace-->
+  </head>
+  <body unresolved="" class="layout vertical"><span id="browser-sync-binding"></span>
+    <template id="app" is="dom-bind">
+	<<?= appname ?>></<?= appname ?>>
+    </template>
+    <!-- build:js scripts/<?= appname ?>.js-->
+    <script src="scripts/<?= appname ?>.js"></script>
+    <!-- endbuild-->
+  </body>
+</html>

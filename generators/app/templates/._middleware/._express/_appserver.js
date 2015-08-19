@@ -48,11 +48,7 @@ appServer.use(function(req, res, next) {
   next(err);
 });
 <?
-  if( viewEngine == "html") {
-    errorRenderer = "err.status.toString()";
-  } else {
     errorRenderer = "'error'"
-  }
 ?>
 // error handlers
 // development error handler
